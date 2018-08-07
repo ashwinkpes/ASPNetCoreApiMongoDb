@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 using MongoDB.Database.Models;
+using MongoDB.Manager;
 using MongoDB.Repository;
 
 using System;
@@ -14,26 +15,28 @@ namespace MongoDB.Controllers
     [Produces("application/json")]
     public class UsersController : ControllerBase
     {
+        private readonly IAccountManager<User> _accountManager;
         private readonly IRepositoryWrapper _repository;
 
-        public UsersController(IRepositoryWrapper repository)
+        public UsersController(IAccountManager<User> accountManager, IRepositoryWrapper repository)
         {
+            _accountManager = accountManager;
             _repository = repository;
         }
 
-        // GET: api/User
+        // GET: api/users
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             List<User> users = await _repository.Users.GetAllAsync();
 
-            if (users is null || users.Count is 0)
+            if (users.Count is 0)
                 return NoContent();
 
             return Ok(users);
         }
 
-        // GET: api/users/5
+        // GET: api/users/{id}
         [HttpGet("{id}", Name = "Get")]
         public async Task<IActionResult> Get(Guid id)
         {
@@ -57,11 +60,12 @@ namespace MongoDB.Controllers
             return Ok(user.Posts);
         }
 
+        // POST: api/users/{id}/posts
         [HttpPost("{id}/posts")]
         public async Task<IActionResult> PostPostAsync([FromRoute] Guid id, [FromBody] Post model)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Invalid model");
+                return BadRequest(ModelState);
 
             User user = await _repository.Users.FindAsync(id);
 
@@ -76,7 +80,10 @@ namespace MongoDB.Controllers
         [HttpPost("signin")]
         public async Task<IActionResult> SignInAsync([FromBody] User model)
         {
-            Token token = await _repository.Users.SignInAsync(model);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            Token token = await _accountManager.SignInAsync(model);
 
             if (token is null)
                 return Unauthorized();
@@ -88,10 +95,12 @@ namespace MongoDB.Controllers
         [HttpPost("signup")]
         public async Task<IActionResult> SignUpAsync([FromBody] User model)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             try
             {
-                User user = new User(model.Name, model.Email, model.Password);
-                Token token = await _repository.Users.SignUpAsync(user);
+                Token token = await _accountManager.SignUpAsync(model);
 
                 if (token is null)
                     return BadRequest("Could not generate token");
@@ -104,7 +113,7 @@ namespace MongoDB.Controllers
             }
         }
 
-        // PUT: api/users/5
+        // PUT: api/users/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> Put([FromRoute] Guid id, [FromBody] User model)
         {
@@ -112,7 +121,7 @@ namespace MongoDB.Controllers
             return Ok();
         }
 
-        // DELETE: api/users/5
+        // DELETE: api/users/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
