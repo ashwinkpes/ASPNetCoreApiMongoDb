@@ -1,10 +1,10 @@
 # Endpoints actions
 
-> These endpoints and responses are just for demontration purposes.
+> These endpoints and responses are just for demonstration purposes.
 
-Some basic endpoints with GET/POST actions
+Some basic endpoints with GET/POST/DELETE requests
 
-## Signup with a new account
+## Signup new user
 
 ```plaintext
 POST | http://localhost:5000/api/users/signup
@@ -12,7 +12,7 @@ POST | http://localhost:5000/api/users/signup
 
 ![Signup](https://raw.githubusercontent.com/Flysenberg/ASPNetCoreApiMongoDb/master/img/signup.PNG)
 
-## Signin with existing account
+## Signin existing user
 
 ```plaintext
 POST | http://localhost:5000/api/users/signin
@@ -20,7 +20,7 @@ POST | http://localhost:5000/api/users/signin
 
 ![Signin](https://raw.githubusercontent.com/Flysenberg/ASPNetCoreApiMongoDb/master/img/signin.PNG)
 
-## Get user's info
+## Get user info
 
 ```plaintext
 GET | http://localhost:5000/api/users/{id}
@@ -28,7 +28,7 @@ GET | http://localhost:5000/api/users/{id}
 
 ![GetUserById](https://raw.githubusercontent.com/Flysenberg/ASPNetCoreApiMongoDb/master/img/getUser.PNG)
 
-## Get user's posts
+## Get user posts
 
 ```plaintext
 GET | http://localhost:5000/api/users/{id}/posts
@@ -44,7 +44,7 @@ POST | http://localhost:5000/api/users/{id}/posts
 
 ![AddNewPost](https://raw.githubusercontent.com/Flysenberg/ASPNetCoreApiMongoDb/master/img/postPost.PNG)
 
-## Delete a user
+## Delete user
 
 ```plaintext
 DELETE | http://localhost:5000/api/users/{id}
