@@ -1,12 +1,15 @@
 ﻿using System;
+using MongoDB.Bson;
 
 namespace MongoDB.Database.Models
 {
     public interface IPost
     {
-        Guid Id { get; }
-        string Title { get; }
-        string Content { get; }
-        DateTime CreationDate { get; }
+        string Content { get; set; }
+        DateTime CreationDate { get; set; }
+        Guid Id { get; set; }
+        ObjectId InternalId { get; set; }
+        string Title { get; set; }
+        User User { get; set; }
     }
 }
