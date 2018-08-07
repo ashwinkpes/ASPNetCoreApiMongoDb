@@ -43,3 +43,11 @@ POST | http://localhost:5000/api/users/{id}/posts
 ```
 
 ![AddNewPost](https://raw.githubusercontent.com/Flysenberg/ASPNetCoreApiMongoDb/master/img/postPost.PNG)
+
+## Delete a user
+
+```plaintext
+DELETE | http://localhost:5000/api/users/{id}
+```
+
+![DeleteUserAccount](https://raw.githubusercontent.com/Flysenberg/ASPNetCoreApiMongoDb/master/img/deleteUser.PNG)
