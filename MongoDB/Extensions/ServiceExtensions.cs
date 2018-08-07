@@ -21,7 +21,7 @@ namespace MongoDB.Extensions
 
         public static IServiceCollection AddManagers(this IServiceCollection services)
         {
-            services.AddScoped<IAccountManager<User>, AccountManager>(); 
+            services.AddScoped<IAccountManager<User>, AccountManager>();
 
             return services;
         }

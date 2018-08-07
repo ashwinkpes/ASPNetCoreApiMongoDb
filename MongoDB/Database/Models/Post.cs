@@ -15,7 +15,7 @@ namespace MongoDB.Database.Models
 
         [BsonIgnoreIfNull]
         public virtual User User { get; set; }
-        
+
         [BsonDateTimeOptions(DateOnly = false, Kind = DateTimeKind.Utc, Representation = BsonType.String)]
         public DateTime CreationDate { get; set; } = DateTime.UtcNow;
 

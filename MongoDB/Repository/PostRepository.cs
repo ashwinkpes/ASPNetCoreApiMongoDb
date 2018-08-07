@@ -37,7 +37,8 @@ namespace MongoDB.Repository
 
         public async Task<List<Post>> GetAllAsync()
         {
-            return await Task.Run(() => {
+            return await Task.Run(() =>
+            {
                 List<Post> posts = new List<Post>();
 
                 foreach (User user in _context.Users.AsQueryable().ToList())
