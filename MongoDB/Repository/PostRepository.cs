@@ -25,7 +25,7 @@ namespace MongoDB.Repository
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(Guid id)
+        public Task<bool> DeleteAsync(Guid id)
         {
             throw new NotImplementedException();
         }

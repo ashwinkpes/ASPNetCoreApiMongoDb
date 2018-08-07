@@ -10,6 +10,6 @@ namespace MongoDB.Repository
         Task<T> FindAsync(Guid id);
         Task AddAsync(T entity);
         Task UpdateAsync(Guid id, T entity);
-        Task DeleteAsync(Guid id);
+        Task<bool> DeleteAsync(Guid id);
     }
 }

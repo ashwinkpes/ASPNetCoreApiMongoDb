@@ -24,7 +24,7 @@ namespace MongoDB.Repository
 
         public async Task<User> FindAsync(Guid id)
         {
-            return await _context.Users.Find(x => x.Id == id).FirstAsync();
+            return await _context.Users.Find(x => x.Id == id).FirstOrDefaultAsync();
         }
 
         public async Task AddAsync(User entity)
@@ -60,9 +60,16 @@ namespace MongoDB.Repository
             await _context.Users.UpdateOneAsync(filter, update);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
-            await _context.Users.DeleteOneAsync(x => x.Id == id);
+            User user = await FindAsync(id);
+
+            if (user is null)
+                return false;
+
+            DeleteResult result = await _context.Users.DeleteOneAsync(x => x.InternalId == user.InternalId);
+
+            return result.DeletedCount > 0;
         }
     }
 }

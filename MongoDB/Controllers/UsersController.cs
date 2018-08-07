@@ -125,8 +125,12 @@ namespace MongoDB.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
-            await _repository.Users.DeleteAsync(id);
-            return Redirect("/");
+            bool result = await _repository.Users.DeleteAsync(id);
+
+            if (!result)
+                return NotFound();
+
+            return Ok();
         }
     }
 }
