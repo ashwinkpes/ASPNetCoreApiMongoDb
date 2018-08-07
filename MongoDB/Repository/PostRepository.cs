@@ -32,7 +32,10 @@ namespace MongoDB.Repository
 
         public async Task<Post> FindAsync(Guid id)
         {
-            return await _context.Users.AsQueryable().Select(x => x.Posts.FirstOrDefault(p => p.Id == id)).FirstOrDefaultAsync();
+            return await _context.Users
+                .AsQueryable()
+                .Select(x => x.Posts.FirstOrDefault(p => p.Id == id))
+                .FirstOrDefaultAsync();
         }
 
         public async Task<List<Post>> GetAllAsync()
