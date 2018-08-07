@@ -10,7 +10,7 @@ Some basic endpoints with GET/POST actions
 POST | http://localhost:5000/api/users/signup
 ```
 
-![Signup](signup.png)
+![Signup](https://raw.githubusercontent.com/Flysenberg/ASPNetCoreApiMongoDb/master/img/signup.PNG)
 
 ## Signin with existing account
 
@@ -18,7 +18,7 @@ POST | http://localhost:5000/api/users/signup
 POST | http://localhost:5000/api/users/signin
 ```
 
-![Signin](signin.png)
+![Signin](https://raw.githubusercontent.com/Flysenberg/ASPNetCoreApiMongoDb/master/img/signin.PNG)
 
 ## Get user's info
 
@@ -26,7 +26,7 @@ POST | http://localhost:5000/api/users/signin
 GET | http://localhost:5000/api/users/{id}
 ```
 
-![GetUserById](getUser.png)
+![GetUserById](https://raw.githubusercontent.com/Flysenberg/ASPNetCoreApiMongoDb/master/img/getUser.PNG)
 
 ## Get user's posts
 
@@ -34,7 +34,7 @@ GET | http://localhost:5000/api/users/{id}
 GET | http://localhost:5000/api/users/{id}/posts
 ```
 
-![GetUserPostsByUserId](getUserPosts.png)
+![GetUserPostsByUserId](https://raw.githubusercontent.com/Flysenberg/ASPNetCoreApiMongoDb/master/img/getUserPosts.PNG)
 
 ## Add new post
 
@@ -42,4 +42,4 @@ GET | http://localhost:5000/api/users/{id}/posts
 POST | http://localhost:5000/api/users/{id}/posts
 ```
 
-![AddNewPost](postPost.png)
+![AddNewPost](https://raw.githubusercontent.com/Flysenberg/ASPNetCoreApiMongoDb/master/img/postPost.PNG)
